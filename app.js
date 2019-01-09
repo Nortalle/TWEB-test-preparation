@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.send('Hello coucou!');
+  res.send('Hello Lorena!');
 });
 
 // Forward 404 to error handler
