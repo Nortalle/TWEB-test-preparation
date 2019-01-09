@@ -2,7 +2,7 @@
 require('dotenv/config');
 const express = require('express');
 const cors = require('cors');
-
+const fetch 
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -10,7 +10,9 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.send('Hello Kevin!');
+  fetch('https://jsonplaceholder.typicode.com/todos/69')
+    .then(response => response.json())
+    .then(json => res.send(json));
 });
 
 // Forward 404 to error handler
