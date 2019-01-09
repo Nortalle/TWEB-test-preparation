@@ -10,17 +10,10 @@ const port = process.env.PORT || 3000;
 // Enable CORS for the client app
 app.use(cors());
 
-app.get('/', (req, res) => {
-  fetch('https://jsonplaceholder.typicode.com/todos/69')
+app.get('/:id', (req, res) => {
+  fetch(`https://jsonplaceholder.typicode.com/todos/${req.params.id}`)
     .then(response => response.json())
     .then(json => res.send(json));
-});
-
-// Forward 404 to error handler
-app.use((req, res, next) => {
-  const error = new Error('Not found');
-  error.status = 404;
-  next(error);
 });
 
 // Error handler
