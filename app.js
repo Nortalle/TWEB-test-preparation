@@ -3,9 +3,23 @@ require('dotenv/config');
 const express = require('express');
 const cors = require('cors');
 const fetch = require('node-fetch');
+const { MongoClient } = require('mongodb');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+
+MongoClient.connect('mongodb://root:root@192.168.99.100:27017/admin')
+  .then((client) => {
+    const db = client.db();
+    const collection = db.collection('test');
+    collection.insertOne({ hello: 'doc1' });
+    collection.insertOne({ hello: 'doc2' });
+    collection.insertMany([
+      { hello: 'doc3' },
+      { hello: 'doc4' },
+    ]);
+  });
 
 // Enable CORS for the client app
 app.use(cors());
